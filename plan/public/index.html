@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+<body>
+
+  <div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Home</a>
+  <a href="#news">My CV</a>
+  <a href="#pong">Pong</a>
+  <a href="#about">About Me</a>
+  <a href="javascript:void(0);" class="icon" onclick="nav()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+    <h1 id="hide">My Awesome Life Plan! </h1>
+    <button onclick="toggle()">"Click me"</button>
+<div id="app">
+
+
+
+  <ol>
+    <li v-for="plan in plans">
+      {{ plan.text }} {{ plan.unchangeable }}
+</li>
+   <p>{{ message }}</p>
+ <input v-model="message" />
+    <button v-on:click="addItem()">Toevoegen</button>
+
+  </ol>
+</div>
+
+<div>
+<button onclick="one()"><= 0.5 year</button>
+<button onclick="two()">=1 year</button>
+<button onclick="three()"><=1 year</button>
+<button onclick="four()">Weekly Splitup at the moment</button>
+<button onclick="five()">My past Quiz Scores</button>
+<button onclick="six()">github/noobpro87</button>
+<button onclick="six()">Websites developed: smartpart.com / skills4life.nl / bubblefishtrip.com</button>
+<button onclick="seven()">slack me...ianni.ilario@gmail.com or call me: 0647404374</button>
+
+
+
+</div>
+
+<!--
+<div id="app"><p>{{ message }}</p></div>
+<div id="app2"><p>{{ messagetwo }}</p></div> -->
+</body>
+</html>
+
+
+<script>
+
+// var obj = {
+//    foo:  'bar'
+// }
+// Object.freeze(obj)
+//
+// new Vue({
+//   el: '#app'
+//   data: obj
+// })
+
+
+
+var app = new Vue({
+  el: '#app',
+
+  data: {
+    	items: [],
+      message: 'addme',
+ foo:  'bar',
+ visible: false,
+
+    message: 'Write your suggestions for me here',
+    plans: [
+      { text:  '2019: Master Python, Vue.js, SQL and find work in front end web development' },
+      { text: '2020: Secure job and work towards back end development/  GIS' },
+      { text: '2021: Start securing knowledge for a StartUp and continue looking into Quantum Computing'},
+{ unchangeable: 'In my free time: Teach, Learn, freelance and keep fit' }
+
+
+
+    ]
+
+  }
+
+,
+methods: {
+  toggle: function toggle() {
+    this.visible = !this.visible;
+},
+saveItems: function() {
+          localStorage.setItem('Data',JSON.stringify(this.items));
+        },
+        mounted() {
+        try {
+          if (localStorage.getItem('Data')) {
+            this.items = JSON.parse(localStorage.getItem('Data'));
+          }
+        } catch(e) {
+          localStorage.removeItem('Data');
+        }
+      },
+      addItem: function() {
+          //this.items.push({ text: (this.items.length+1)+"e regel" });
+          this.items.push({ id: this.items.length, text: this.message });
+          this.saveItems();
+        }
+
+
+
+}
+
+
+
+}
+)
+
+</script>
+
+
+
+<script>
+
+// addItem: function addItem(data) {
+//
+//   this.items.push("message");
+//   console.log('hi')
+// //   document.getElementById("id").innerHTML = plans;
+// }
+
+    click: function one() {
+      alert("First 0.5 year: Follow courses, work somewhere, finish internship focusing on these three areas and SmartPart.com");
+    }
+    click:  function two() {
+      alert("I would by now have liked to started mastering the back end if I fully comprehend everythng up to 0.5 year")
+    }
+    click: function three() {
+      alert("I would by now like to have gained the technical know how to contribute towards technological innovation and starting a position as management")
+    }
+    click: function four() {
+      alert("Python/ Front End Work/ Possible project for SmartPart")
+    }
+    toggle: function toggle() {
+      var x = document.getElementById("hide");
+      if (x.style.display === "none") {
+        x.style.display ="block";
+
+      } else {
+        x.style.display = "none";
+      }
+    }
+    nav: function nav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+
+</script>
+<style>
+button {
+   width: 175px;
+   height: 75px;
+    background-color: lightblue;
+
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
